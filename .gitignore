@@ -1,24 +1,341 @@
-# Compiled class file
-*.class
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        header {
+            background-color: #030003;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+        main {
+            display: flex;
+            flex: 1;
+            overflow: auto;
+        }
+        aside {
+            background-color: #030003;
+            padding: 15px;
+            width: 20%;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        section {
+            background-color: #e2e2e2;
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 10px 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        aside nav ul li a {
+            color: #f5c4f9;
+            text-decoration: none;
+        }
+        aside nav ul li a:hover {
+        color: #FFD700; 
+        }
+    </style>
+</head>
+<body>
+ <header style="color: #d25eda;">
+        <img src="logo3.png">
+        <div>
+            <h1>Práctica de JavaScript</h1>
+            <p>Laboratorio de Diseño y JavaScript - INF 113</p>
+        </div>
+    </header>
+    <main>
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="#fibonacci" onclick="showSection('fibonacci')">Serie de Fibonacci</a></li>
+                    <li><a href="#binario" onclick="showSection('binario')">Serie Binaria</a></li>
+                    <li><a href="#factorial" onclick="showSection('factorial')">Factoriales y Suma</a></li>
+                    <li><a href="#rotar" onclick="showSection('rotar')">Rotar Número</a></li>
+                    <li><a href="#repetidos" onclick="showSection('repetidos')">Dígitos Repetidos</a></li>
+                    <li><a href="#capicua" onclick="showSection('capicua')">Número Capicúa</a></li>
+                    <li><a href="#primos" onclick="showSection('primos')">Números Primos</a></li>
+                    <li><a href="#palindromo" onclick="showSection('palindromo')">Palíndromo</a></li>
+                    <li><a href="#calculadora" onclick="showSection('calculadora')">Calculadora</a></li>
+                    <li><a href="#romanos" onclick="showSection('romanos')">Números Romanos</a></li>
+                    <li><a href="#pascal" onclick="showSection('pascal')">Matriz de Pascal</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section id="content">
+            <article id="fibonacci">
+                <h2>Serie de Fibonacci</h2>
+                <input type="number" id="fibonacciInput" placeholder="Ingrese un número">
+                <button onclick="generateFibonacci()">Generar</button>
+                <p id="fibonacciResult"></p>
+            </article>
 
-# Log file
-*.log
+            <article id="binario">
+                <h2>Serie Binaria</h2>
+                <input type="number" id="binaryInput" placeholder="Ingrese un número">
+                <button onclick="generateBinary()">Generar</button>
+                <p id="binaryResult"></p>
+            </article>
 
-# BlueJ files
-*.ctxt
+            <article id="factorial" class="hidden">
+                <h2>Factoriales y Suma</h2>
+                <input type="number" id="factorialInput" placeholder="Ingrese un número">
+                <button onclick="calculateFactorialSum()">Calcular</button>
+                <p id="factorialResult"></p>
+            </article>
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+            <article id="rotar" class="hidden">
+                <h2>Rotar Número</h2>
+                <input type="text" id="rotateInput" placeholder="Ingrese un número">
+                <button onclick="rotateNumber()">Rotar</button>
+                <p id="rotateResult"></p>
+            </article>
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+            <article id="repetidos" class="hidden">
+                <h2>Dígitos Repetidos</h2>
+                <input type="number" id="repeatedInput" placeholder="Ingrese un número">
+                <button onclick="findRepeatedDigits()">Encontrar</button>
+                <p id="repeatedResult"></p>
+            </article>
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+            <article id="capicua" class="hidden">
+                <h2>Número Capicúa</h2>
+                <input type="number" id="capicuaInput" placeholder="Ingrese un número">
+                <button onclick="isPalindromeNumber()">Verificar</button>
+                <p id="capicuaResult"></p>
+            </article>
+
+            <article id="primos" class="hidden">
+                <h2>Números Primos</h2>
+                <input type="number" id="primeInput" placeholder="Ingrese un número">
+                <button onclick="generatePrimes()">Generar</button>
+                <p id="primeResult"></p>
+            </article>
+
+            <article id="palindromo" class="hidden">
+                <h2>Palíndromo</h2>
+                <input type="text" id="palindromeInput" placeholder="Ingrese una palabra">
+                <button onclick="isPalindromeWord()">Verificar</button>
+                <p id="palindromeResult"></p>
+            </article>
+
+            <article id="calculadora" class="hidden">
+                <h2>Calculadora</h2>
+                <input type="text" id="calcInput" placeholder="Ingrese una operación">
+                <button onclick="calculateExpression()">Calcular</button>
+                <p id="calcResult"></p>
+            </article>
+
+            <article id="romanos" class="hidden">
+                <h2>Números Romanos</h2>
+                <input type="number" id="romanInput" placeholder="Ingrese un número">
+                <button onclick="convertToRoman()">Convertir</button>
+                <p id="romanResult"></p>
+            </article>
+
+            <article id="pascal" class="hidden">
+                <h2>Matriz de Pascal</h2>
+                <input type="number" id="pascalInput" placeholder="Ingrese la profundidad">
+                <button onclick="generatePascalTriangle()">Generar</button>
+                <pre id="pascalResult"></pre>
+            </article>
+
+        </section>
+    </main>
+    <footer style="color: #ab24ab;">
+        <p>CESPEDES ROJAS GABRIELA BELEN INF113</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section article');
+            sections.forEach(section => section.style.display = 'none');
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) activeSection.style.display = 'block';
+        }
+
+        function generateFibonacci() {
+            const n = parseInt(document.getElementById('fibonacciInput').value);
+            if (isNaN(n) || n < 0) {
+                document.getElementById('fibonacciResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            let a = 0, b = 1;
+            const series = [a];
+            for (let i = 1; i < n; i++) {
+                const temp = a + b;
+                a = b;
+                b = temp;
+                series.push(a);
+            }
+            document.getElementById('fibonacciResult').innerText = `Serie: ${series.join(', ')}`;
+        }
+
+        function generateBinary() {
+            const n = parseInt(document.getElementById('binaryInput').value);
+            if (isNaN(n) || n <= 0) {
+                document.getElementById('binaryResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            const binarySeries = Array.from({ length: n }, (_, i) => i.toString(2));
+            document.getElementById('binaryResult').innerText = `Serie: ${binarySeries.join(', ')}`;
+        }
+
+        function calculateFactorialSum() {
+            const n = parseInt(document.getElementById('factorialInput').value);
+            if (isNaN(n) || n <= 0) {
+                document.getElementById('factorialResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            let factorial = 1, sum = 0;
+            for (let i = 1; i <= n; i++) {
+                factorial *= i;
+                sum += factorial;
+            }
+            document.getElementById('factorialResult').innerText = `Suma de factoriales: ${sum}`;
+        }
+
+        function rotateNumber() {
+            const num = document.getElementById('rotateInput').value;
+            if (!num || isNaN(num)) {
+                document.getElementById('rotateResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            const rotated = num.slice(1) + num[0];
+            document.getElementById('rotateResult').innerText = `Rotado: ${rotated}`;
+        }
+
+        function findRepeatedDigits() {
+            const num = document.getElementById('repeatedInput').value;
+            if (!num || isNaN(num)) {
+                document.getElementById('repeatedResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            const counts = {};
+            [...num].forEach(digit => counts[digit] = (counts[digit] || 0) + 1);
+            const repeated = Object.entries(counts).filter(([digit, count]) => count > 1).map(([digit]) => digit);
+            document.getElementById('repeatedResult').innerText = `Repetidos: ${repeated.join(', ') || 'Ninguno'}`;
+        }
+
+        function isPalindromeNumber() {
+            const num = document.getElementById('capicuaInput').value;
+            if (!num || isNaN(num)) {
+                document.getElementById('capicuaResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            const isPalindrome = num === [...num].reverse().join('');
+            document.getElementById('capicuaResult').innerText = isPalindrome ? 'Es capicúa' : 'No es capicúa';
+        }
+
+        function generatePrimes() {
+            const n = parseInt(document.getElementById('primeInput').value);
+            if (isNaN(n) || n <= 0) {
+                document.getElementById('primeResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            const primes = [];
+            for (let i = 2; i <= n; i++) {
+                if (primes.every(p => i % p !== 0)) primes.push(i);
+            }
+            document.getElementById('primeResult').innerText = `Primos: ${primes.join(', ')}`;
+        }
+
+        function isPalindromeWord() {
+            const word = document.getElementById('palindromeInput').value;
+            if (!word) {
+                document.getElementById('palindromeResult').innerText = 'Ingrese una palabra válida';
+                return;
+            }
+            const isPalindrome = word === [...word].reverse().join('');
+            document.getElementById('palindromeResult').innerText = isPalindrome ? 'Es palíndromo' : 'No es palíndromo';
+        }
+
+        function calculateExpression() {
+            const expression = document.getElementById('calcInput').value;
+            try {
+                const result = eval(expression);
+                document.getElementById('calcResult').innerText = `Resultado: ${result}`;
+            } catch {
+                document.getElementById('calcResult').innerText = 'Expresión inválida';
+            }
+        }
+
+        function convertToRoman() {
+            let num = parseInt(document.getElementById('romanInput').value);
+            if (isNaN(num) || num <= 0 || num > 3999) {
+                document.getElementById('romanResult').innerText = 'Ingrese un número entre 1 y 3999';
+                return;
+            }
+            const romanMap = [
+                [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
+                [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
+                [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']
+            ];
+            let result = '';
+            for (const [value, numeral] of romanMap) {
+                while (num >= value) {
+                    result += numeral;
+                    num -= value;
+                }
+            }
+            document.getElementById('romanResult').innerText = `Número romano: ${result}`;
+        }
+
+        function generatePascalTriangle() {
+            const n = parseInt(document.getElementById('pascalInput').value);
+            if (isNaN(n) || n <= 0) {
+                document.getElementById('pascalResult').innerText = 'Ingrese un número válido';
+                return;
+            }
+            const triangle = [[1]];
+            for (let i = 1; i < n; i++) {
+                const prevRow = triangle[i - 1];
+                const newRow = [1];
+                for (let j = 1; j < prevRow.length; j++) {
+                    newRow.push(prevRow[j - 1] + prevRow[j]);
+                }
+                newRow.push(1);
+                triangle.push(newRow);
+            }
+            document.getElementById('pascalResult').innerText = triangle.map(row => row.join(' ')).join('\n');
+        }
+
+        // Inicializar para mostrar solo la primera sección
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('fibonacci');
+        });
+    </script>
+</body>
+</html>
